@@ -60,9 +60,9 @@ public class CElasticBuilderTest
 	@Test
 	public void testMisc() throws Exception
 	{
-		System.out.println("TEST 1: " + builder.from(2).build().toString());
-		System.out.println("TEST 2: " + builder.size(5).build().toString());
-		System.out.println("TEST 3: " + builder.query("terms", "actor", "Christopher Lee").rawOption("series", "LOTR").build().toString());
+//		System.out.println("TEST 1: " + builder.from(2).build().toString());
+//		System.out.println("TEST 2: " + builder.size(5).build().toString());
+//		System.out.println("TEST 3: " + builder.query("terms", "actor", "Christopher Lee").rawOption("series", "LOTR").build().toString());
 	}
 	
 	@Test
@@ -72,6 +72,12 @@ public class CElasticBuilderTest
 //		System.out.println("TEST 2: " + builder.query("terms", "author", "robbo").filter("term", "user", "sam").build().toString());
 //		System.out.println("TEST 3: " + builder.filter("term", "user", "ash").build().toString());
 //		System.out.println("TEST 4: " + builder.filter("term", "user", "kimchy").filter("term", "user", "herald").filter("term", "user", "ash").build().toString());
+
+	}
+	
+	@Test
+	public void testMain() throws Exception
+	{
 		System.out.println("TEST FINAL: " + builder.query("match", "message", "this is a test")
 		  .filter("term", "user", "kimchy")
 		  .filter("term", "user", "herald")
@@ -80,6 +86,9 @@ public class CElasticBuilderTest
 		  .aggregation("terms", "user")
 		  .aggregation("terms", "waifu")
 		  .sortDesc("user")
+		  .from(4)
+		  .size(10)
+		  .rawOption("pass", "true")
 		  .build().toString());
 	}
 }
